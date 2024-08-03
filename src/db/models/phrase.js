@@ -1,11 +1,11 @@
-import { model, Mongoose, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 const phraseSchema = new Schema(
   {
-    english: {
+    eng: {
       type: String,
       required: true,
     },
-    russian: {
+    rus: {
       type: String,
       required: true,
     },
@@ -14,8 +14,8 @@ const phraseSchema = new Schema(
       default: '',
     },
     categoryId: {
-      type: Schema.Types.ObjectId,
-      ref: 'category',
+      type: String,
+      required: true,
     },
   },
   {
@@ -25,4 +25,4 @@ const phraseSchema = new Schema(
 
 phraseSchema.index({ english: 1 }, { unique: true });
 
-export const CategoryCollection = model('category', phraseSchema);
+export const PhraseCollection = model('phrase', phraseSchema, 'phrase');

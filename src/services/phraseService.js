@@ -1,4 +1,5 @@
-import { PhraseCollection } from '../models/phraseModel.js';
+import mongoose from 'mongoose';
+import { PhraseCollection } from '../db/models/phrase.js';
 
 // Створення нової фрази
 export const createPhraseService = async (data) => {
@@ -24,12 +25,20 @@ export const getPhraseByIdService = async (id) => {
   }
 };
 
-// Отримання усіх фраз
-export const getAllPhrasesService = async () => {
+export const getAllPhrasesService = async (categoryId) => {
   try {
-    const phrases = await PhraseCollection.find();
-    return phrases;
+    if (categoryId) {
+      if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+        throw new Error('Invalid categoryId');
+      }
+      const phrases = await PhraseCollection.find({ categoryId });
+      return phrases;
+    } else {
+      const phrases = await PhraseCollection.find();
+      return phrases;
+    }
   } catch (error) {
+    console.log(error);
     throw new Error(error.message);
   }
 };

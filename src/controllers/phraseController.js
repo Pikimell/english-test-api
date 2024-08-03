@@ -20,7 +20,8 @@ export const getPhraseByIdController = async (event, context) => {
 };
 
 export const getAllPhrasesController = async (event, context) => {
-  const result = await getAllPhrasesService();
+  const { categoryId } = event.queryStringParameters || {};
+  const result = await getAllPhrasesService(categoryId);
   return response(200)(result);
 };
 

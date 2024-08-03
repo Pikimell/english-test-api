@@ -15,35 +15,91 @@ provider:
   stage: dev
   profile: serverlessTemplate
 
-functions:
-  templateGet:
-    handler: src/handlers/templates/getTemplateHandler.getTemplateHandler
-    events:
-      - http:
-          path: template
-          method: get
-          cors: true
+Ось YAML конфігурація для ваших функцій обробників категорій та фраз:
 
-  templatePost:
-    handler: src/handlers/templates/createTemplateHandler.createTemplateHandler
+functions:
+  # Handlers for phrases
+  createPhrase:
+    handler: src/handlers/phraseHandler.createPhraseHandler
     events:
       - http:
-          path: templates
+          path: phrases
           method: post
           cors: true
 
-  templatePut:
-    handler: src/handlers/templates/putTemplateHandler.putTemplateHandler
+  getPhraseById:
+    handler: src/handlers/phraseHandler.getPhraseByIdHandler
     events:
       - http:
-          path: templates/{templateId}
+          path: phrases/{id}
+          method: get
+          cors: true
+
+  getAllPhrases:
+    handler: src/handlers/phraseHandler.getAllPhrasesHandler
+    events:
+      - http:
+          path: phrases
+          method: get
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                categoryId: true
+
+  updatePhrase:
+    handler: src/handlers/phraseHandler.updatePhraseHandler
+    events:
+      - http:
+          path: phrases/{id}
           method: put
           cors: true
 
-  templateDelete:
-    handler: src/handlers/templates/deleteTemplateHandler.deleteTemplateHandler
+  deletePhrase:
+    handler: src/handlers/phraseHandler.deletePhraseHandler
     events:
       - http:
-          path: templates/{templateId}
+          path: phrases/{id}
+          method: delete
+          cors: true
+
+  # Handlers for categories
+  createCategory:
+    handler: src/handlers/categoryHandler.createCategoryHandler
+    events:
+      - http:
+          path: categories
+          method: post
+          cors: true
+
+  getCategoryById:
+    handler: src/handlers/categoryHandler.getCategoryByIdHandler
+    events:
+      - http:
+          path: categories/{id}
+          method: get
+          cors: true
+
+  getAllCategories:
+    handler: src/handlers/categoryHandler.getAllCategoriesHandler
+    events:
+      - http:
+          path: categories
+          method: get
+          cors: true
+
+  updateCategory:
+    handler: src/handlers/categoryHandler.updateCategoryHandler
+    events:
+      - http:
+          path: categories/{id}
+          method: put
+          cors: true
+
+  deleteCategory:
+    handler: src/handlers/categoryHandler.deleteCategoryHandler
+    events:
+      - http:
+          path: categories/{id}
           method: delete
           cors: true

@@ -1,4 +1,4 @@
-org: Volodymyr Pashchenko
+org: pashchenko
 service: english-backend
 
 frameworkVersion: '3'
@@ -13,7 +13,8 @@ provider:
   runtime: nodejs18.x
   region: us-east-2
   stage: dev
-  profile: serverlessTemplate
+  profile: serverlessUser
+  timeout: 29
 
 Ось YAML конфігурація для ваших функцій обробників категорій та фраз:
 

@@ -27,6 +27,7 @@ export const getCategoryByIdService = async (id) => {
 // Отримання усіх категорій
 export const getAllCategoriesService = async () => {
   try {
+    console.log('TEST');
     const categories = await CategoryCollection.find();
     return categories;
   } catch (error) {

@@ -13,4 +13,4 @@ const categorySchema = new Schema(
 
 categorySchema.index({ title: 1 }, { unique: true });
 
-export const TemplatesCollection = model('category', categorySchema);
+export const CategoryCollection = model('category', categorySchema);

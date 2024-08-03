@@ -1,5 +1,5 @@
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
-import { createCategoryController } from '../../controllers/categoriesController.js';
+import { createCategoryController } from '../../controllers/categoryController.js';
 
 export const createCategoryHandler = async (event, context) => {
   const ctrl = ctrlWrapper(createCategoryController);

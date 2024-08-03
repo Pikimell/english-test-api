@@ -1,5 +1,5 @@
-org: author
-service: AWS-BACKEND
+org: Volodymyr Pashchenko
+service: english-backend
 
 frameworkVersion: '3'
 
@@ -14,7 +14,6 @@ provider:
   region: us-east-2
   stage: dev
   profile: serverlessTemplate
-  timeout: 20
 
 functions:
   templateGet:
